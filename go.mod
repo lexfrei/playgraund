@@ -3,7 +3,7 @@ module github.com/lexfrei/playgraund
 go 1.21.4
 
 require (
-	github.com/labstack/echo/v4 v4.11.1
+	github.com/labstack/echo/v4 v4.11.3
 	github.com/oapi-codegen/runtime v1.0.0
 )
 
