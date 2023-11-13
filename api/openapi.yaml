@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: iBolit
+  version: 0.0.1
+servers:
+  - url: 'https://ibolit.teststage.app'
+paths:
+  /api/v1/{env}/{identity}/run-test/rmq:
+    get:
+      summary: Description of the endpoint
+      parameters:
+        - name: env
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: identity
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A Redis test result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedisTestResult'
+        '404':
+          description: Resource not found
+        '423':
+          description: Resource is locked
+        
+
+components:
+  schemas:
+
+    TestResult:
+      type: object
+      properties:
+        name:
+          type: string
+        result:
+          type: boolean
+      required:
+        - name
+        - result
+
+    RedisTestResult:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/TestResult'
+        - type: object
+          properties:
+            RMQConsumers:
+              type: integer
+            RMQQueues:
+              type: integer
+            RMQFaultQueues:
+              type: array
+              items:
+                type: string
+            RMQLongQueues:
+              type: array
+              items:
+                type: string
