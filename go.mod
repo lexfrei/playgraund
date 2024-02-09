@@ -1,6 +1,6 @@
 module github.com/lexfrei/playgraund
 
-go 1.21.4
+go 1.22.0
 
 require (
 	github.com/labstack/echo/v4 v4.11.1
